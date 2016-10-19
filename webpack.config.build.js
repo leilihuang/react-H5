@@ -1,15 +1,16 @@
 const path = require('path'),
     pxtorem = require('postcss-pxtorem'),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     webpack = require('webpack');
 
-const ENV = process.env.NODE_ENV = process.env.ENV = 'development';
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
-const config = {
+var config = {
     cache:true,
-    devtool: 'eval',
+    devtool: 'source-map', //source-map
     entry: {
-        index:['webpack/hot/dev-server', path.resolve(__dirname, 'H5/main')]
+        index:path.resolve(__dirname, 'H5/main')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -29,11 +30,11 @@ const config = {
             },
             include:__dirname
         }, {
-            test: /\.scss$/,
-            loader: 'style!css!sass'
+            test: /\.less$/,
+            loader: ExtractTextPlugin.extract('style','css!postcss!less')
         },{
             test: /\.css$/,
-            loader: 'style!css!postcss'
+            loader: ExtractTextPlugin.extract('style','css!postcss')
         }, {
             test: /\.(jpg|png)$/,
             loader: 'url?limit=8192'
@@ -41,7 +42,7 @@ const config = {
     },
     postcss: function () {
         return [pxtorem({
-            rootValue: 75,
+            rootValue: 100,
             propWhiteList: []
         })]
     },
@@ -55,6 +56,7 @@ const config = {
             context:__dirname,
             manifest:require('./dist/vendor-manifest.json')
         }),
+        new ExtractTextPlugin("[name].css"),
         new webpack.DefinePlugin({
             'process.env':{
                 'NODE_ENV': JSON.stringify('production')
@@ -64,8 +66,11 @@ const config = {
             title:"娃哈哈福礼惠",
             hash:true,
             template:'index.template.html'
-        })
+        }),
+        new webpack.optimize.DedupePlugin()
     ]
 };
+
+console.log(process.env.NODE_ENV);
 
 module.exports = config;

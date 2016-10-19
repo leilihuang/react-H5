@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 const vendors = [
     'react',
     'react-dom',
@@ -19,10 +19,6 @@ module.exports = {
         filename: '[name].dll.js',
         library: '[name]_library'
     },
-    resolve:{
-        //modulesDirectories: ['node_modules', path.join(__dirname, '../node_modules')],
-        extensions: ['', '.web.js', '.js', '.json']
-    },
     plugins: [
         new webpack.DllPlugin({
             path: path.join(__dirname, 'dist', '[name]-manifest.json'),
@@ -32,6 +28,11 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
+            }
+        }),
+        new webpack.DefinePlugin({
+            'process.env':{
+                'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
             }
         })
     ]

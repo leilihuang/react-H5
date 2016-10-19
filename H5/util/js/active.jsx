@@ -1,4 +1,4 @@
-import '../less/active.less';
+import '../sass/active.scss';
 import React , { Component }from 'react';
 
 export default class Active extends Component{
