@@ -1,0 +1,29 @@
+.list-box{
+  .title-box{
+    height:px2Rem(86px);
+    line-height:px2Rem(86px);
+    padding:0 px2Rem(20px);
+    .tit{
+      float:left;
+      @include px2px(32);
+    }
+    .more{
+      float:right;
+      @include px2px(26);
+    }
+  }
+  .con-box{
+    display: block;
+    padding:px2Rem(20px);
+    .con-img,.con-lab{
+      float:left;
+    }
+    .con-img{
+      width:px2Rem(200px);
+      height:auto;
+    }
+    .con-lab{
+      padding-left:px2Rem(20px);
+    }
+  }
+}

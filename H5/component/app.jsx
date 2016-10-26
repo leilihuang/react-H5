@@ -3,63 +3,40 @@ import {TabBar , Icon} from 'antd-mobile';
 import {Link , browserHistory} from 'react-router';
 
 export default class App extends Component{
+    static defaultProps ={
+        menus:[
+            {to:'/home',title:'首页',iconfont:'icon-shouye iconfont'},
+            {to:'/home/detail/1',title:'限时抢购',iconfont:'icon-naozhong-copy iconfont'},
+            {to:'/home',title:'特卖专区',iconfont:'icon-icon iconfont'},
+            {to:'/home',title:'特卖专区',iconfont:'icon-wode iconfont'}
+        ]
+    };
     constructor(props){
         super(props);
         this.state  = {
             hide:false,
-            tabCur:""
+            tabCur:1
         };
+    }
+    tabCurBind(index){
+        this.setState({
+            tabCur:index
+        })
     }
     render(){
         return (
-            <div>
+            <div className="app-menu-box">
                 <div>{this.props.children}</div>
-                <TabBar hidden={this.state.hide}>
-                        <TabBar.Item title="生活"
-                                     key="生活"
-                                     icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}
-                                     selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/WadBBxOIZtDzsgP.png' }}
-                                     selected={this.state.selectedTab  == "blueTab"}
-                                     onPress={()=>{
-                                     browserHistory.push('/home');
-                                this.setState({
-                                    tabCur:"blueTab"
-                                })
-                        }}></TabBar.Item>
-                        <TabBar.Item title="口碑"
-                                     key="口碑"
-                                     icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}
-                                     selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/WadBBxOIZtDzsgP.png' }}
-                                     selected={this.state.selectedTab  == "redTab"}
-                                     onPress={()=>{
-                                      browserHistory.push('/home/detail/1');
-                            this.setState({
-                                tabCur:"redTab"
-                            })
-                        }}></TabBar.Item>
-                        <TabBar.Item title="朋友"
-                                     key="朋友"
-                                     icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}
-                                     selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/WadBBxOIZtDzsgP.png' }}
-                                     selected={this.state.selectedTab  == "greenTab"}
-                                     onPress={()=>{
-                                     browserHistory.push('/home/detail/1');
-                        this.setState({
-                            tabCur:"greenTab"
-                        })
-                    }}></TabBar.Item>
-                        <TabBar.Item title="我的"
-                                     key="我的"
-                                     icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}
-                                     selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/WadBBxOIZtDzsgP.png' }}
-                                     selected={this.state.selectedTab  == "yellowTab"}
-                                     onPress={()=>{
-                                     browserHistory.push('/home/detail/1');
-                        this.setState({
-                            tabCur:"yellowTab"
-                        })
-                    }}></TabBar.Item>
-                </TabBar>
+                <div className="menu-flex-box">
+                    {this.props.menus.map((d,i) =>
+                        <div className={this.state.tabCur == i ? "flexs cur":"flexs"} onClick={this.tabCurBind.bind(this,i)}>
+                            <Link to={d.to}>
+                                <i className={d.iconfont}></i>
+                                <p>首页</p>
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </div>
         )
     }

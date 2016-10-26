@@ -1,3 +1,28 @@
+@import "../../../util/sass/lib/util";
+$red:#ff4683;
+
+.home-box{
+  background: #FFFFFF;
+  .am-navbar{
+    background: $red;
+    .am-navbar-title{
+      color:#fff;
+      font-weight:bold;
+    }
+  }
+  .am-wingblank.am-wingblank-lg{
+    margin:0;
+  }
+  .Carousel-img{
+    width:px2Rem(750px);
+    height:auto;
+  }
+  .am-search-value{
+    -webkit-border-radius: px2Rem(48px);
+    -moz-border-radius: px2Rem(48px);
+    border-radius: px2Rem(48px);
+  }
+}
 .am-tab-bar-tab-title{
   margin-bottom:0;
 }

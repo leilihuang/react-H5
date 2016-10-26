@@ -6,7 +6,7 @@
   "scripts": {
     "dll": "webpack --config webpack.dll.js",
     "build": "webpack --config webpack.config.build.js --progress --colors",
-    "start": "webpack-dev-server --inline --hot --content-base dist/"
+    "start": "webpack-dev-server --inline --hot --content-base dist --history-api-fallback"
   },
   "author": "leilihuang",
   "license": "ISC",
@@ -34,6 +34,9 @@
     "less-loader": "^2.2.3",
     "postcss-loader": "^1.0.0",
     "postcss-pxtorem": "^3.3.1",
+    "redux-logger": "^2.7.0",
+    "redux-thunk": "^2.1.0",
+    "reqwest": "^2.0.5",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",

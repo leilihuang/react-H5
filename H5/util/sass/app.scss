@@ -1,0 +1,36 @@
+.app-menu-box{
+  position:relative;
+  padding-bottom:px2Rem(100px);
+  .menu-flex-box{
+    position:fixed;
+    bottom:0;
+    left:0;
+    display:flex;
+    width:100%;
+    height:px2Rem(100px);
+    border-top: 1px solid #E7E7E7;
+    background-color: #FFF;
+    .flexs{
+      padding-top: px2Rem(10px);
+      flex: 1;
+      text-align:center;
+      box-sizing: border-box;
+      .iconfont{
+        @include px2px(36);
+        color: #5D656B;
+      }
+      p{
+        line-height: 1.4;
+        margin: 0;
+        @include px2px(24);
+        color:#000;
+      }
+    }
+    .cur{
+      .iconfont{
+        color: red;
+      }
+      color: red;
+    }
+  }
+}

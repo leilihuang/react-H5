@@ -1,0 +1,21 @@
+.menu-box{
+  background: #FFFFFF;
+  overflow: hidden;
+  .menu-a{
+    display: block;
+    float:left;
+    width:20%;
+    margin-bottom:px2Rem(20px);
+    .menu-img{
+      width:px2Rem(80px);
+      height:px2Rem(80px);
+      margin: px2Rem(16px) auto px2Rem(10px);
+      display: block;
+    }
+    .menu-text{
+      @include px2px(26);
+      color:#303030;
+      text-align: center;
+    }
+  }
+}

@@ -1,10 +1,9 @@
-import '../sass/active.scss';
 import React , { Component }from 'react';
 
 export default class Active extends Component{
     static defaultProps = {
         data:[]
-    }
+    };
     constructor(props){
         super(props);
         this.state = {

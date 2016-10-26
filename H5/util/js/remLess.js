@@ -26,7 +26,4 @@
         doc.documentElement.style.fontSize = _baseFontSize / 2 * dpr * _fontscale + 'px';
         window.viewportScale = dpr;
     })();
-    if(!window.Promise) {
-        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
-    }
 })();
