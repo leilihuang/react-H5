@@ -15,7 +15,7 @@ export default class App extends Component{
         super(props);
         this.state  = {
             hide:false,
-            tabCur:1
+            tabCur:0
         };
     }
     tabCurBind(index){
@@ -32,7 +32,7 @@ export default class App extends Component{
                         <div className={this.state.tabCur == i ? "flexs cur":"flexs"} onClick={this.tabCurBind.bind(this,i)}>
                             <Link to={d.to}>
                                 <i className={d.iconfont}></i>
-                                <p>首页</p>
+                                <p>{d.title}</p>
                             </Link>
                         </div>
                     )}
