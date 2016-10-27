@@ -1,6 +1,13 @@
 # react-H5
 利用react全家桶以及蚂蚁金服antd-mobile开发H5页面
 
+#目录介绍
+* H5/main.jsx  是入口JS
+* config文件夹是配置文件目录
+* mock 里面存放mock数据，可以配置拦截ajax请求参照demo
+* util文件夹下存放公用的组件以及样式，还有Util.jsx公用类
+* component文件夹下面存放业务组件
+
 #安装步骤
 * npm install -g webpack
 * npm install
@@ -13,6 +20,14 @@
 * Redux
 * React-Router
 * antd-mobile
+* sass
+* reqwest ajax模块
+* mockjs (完美模拟ajax请求)
+
+#辅助开发插件
+* redux-thunk
+* redux-logger
+* redux-devtools(默认是关闭的注释掉了，如果要用请自行放开,一个是main.jsx，一个是config文件夹下面的store.dev.jsx)
 
 #高清自适应样式配置
 * 添加util.scss文件
