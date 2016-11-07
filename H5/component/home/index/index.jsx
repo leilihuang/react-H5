@@ -33,6 +33,16 @@ export const menuData = [
 ];
 
 class Index extends Component{
+    static defaultProps = {
+        touchStart:0,
+        touchEnd:0,
+        style:{
+            height:'100%',
+            overflow: 'auto',
+            border: '1px solid #ddd',
+            margin: '10px 0'
+        }
+    };
     constructor(props){
         super(props);
         this.state = {
@@ -41,35 +51,22 @@ class Index extends Component{
         };
     }
     componentWillMount(){
-        console.log(0);
         this.props.dispatch(getList());
     }
     componentDidMount(){
-        console.log(1);
+
     }
     componentWillUpdate(props,state){
 
     }
-    componentDidUpdate(props,state){
-
-    }
-    shouldComponentUpdate(props,state){
-
-    }
     onSubmit(value){
     }
-    onClear(){
-/*        this.setState({
-            value:''
-        })*/
-    }
-    onChange(val){
-/*        this.setState({
-            value:val
-        });*/
+    onEndReached(){
+        setTimeout(function () {
+            console.log('detail===到底了')
+        },1000);
     }
     render(){
-        console.log(this.props);
         const settings = {
             dots: true,
             autoplay: true,
@@ -91,16 +88,19 @@ class Index extends Component{
                         )}
                     </Carousel>
                 </WingBlank>
+
                 <SearchBar value={this.state.value}
                     placeholder='搜索'
                     onSubmit={this.onSubmit.bind(this)}
-                    onClear={this.onClear.bind(this)}
-                    showCancelButton={false}
-                    onChange={this.onChange.bind(this)}/>
+                    showCancelButton={false}/>
 
                 <Menu data={menuData} />
 
-                <List title='猜你喜欢' moreTitle='更多 >' listData={this.props.homeRs.data} />
+                {/*                <List  style={this.props.style}
+                 onEndReached={this.onEndReached.bind(this)}
+                 title='猜你喜欢'
+                 moreTitle='更多 >'
+                 listData={this.props.homeRs.data} />*/}
             </div>
         )
     }

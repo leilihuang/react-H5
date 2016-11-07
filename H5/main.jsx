@@ -21,7 +21,7 @@ const store = configureStore();
 if(process.env.NODE_ENV == 'development'){
     console.log("开发模式开启mock拦截ajax请求");
     console.log(" 默认关闭调试工具");
-    require('./mock/testData');
+    //require('./mock/testData');
 }
 const Root = () =>{
     if(process.env.NODE_ENV == 'development'){

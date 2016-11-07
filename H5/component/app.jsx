@@ -7,15 +7,15 @@ export default class App extends Component{
         menus:[
             {to:'/home',title:'首页',iconfont:'icon-shouye iconfont'},
             {to:'/home/detail/1',title:'限时抢购',iconfont:'icon-naozhong-copy iconfont'},
-            {to:'/home',title:'特卖专区',iconfont:'icon-icon iconfont'},
-            {to:'/home',title:'特卖专区',iconfont:'icon-wode iconfont'}
+            {to:'/home/list',title:'特卖专区',iconfont:'icon-shouye iconfont'},
+            {to:'/user',title:'个人中心',iconfont:'icon-wode iconfont'}
         ]
     };
     constructor(props){
         super(props);
         this.state  = {
             hide:false,
-            tabCur:0
+            tabCur:2
         };
     }
     tabCurBind(index){

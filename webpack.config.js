@@ -24,10 +24,13 @@ const config = {
             loader: 'babel',
             exclude:/node_modules/,
             query: {
-                presets: ['react', 'es2015'],
-                plugins: ["transform-class-properties","transform-runtime",["antd",{libraryName:"antd-mobile",style:"css"}]]
+                presets: ['es2015', 'stage-0', 'react'],
+                plugins: ["transform-class-properties","transform-runtime","babel-plugin-transform-decorators-legacy",["antd",{libraryName:"antd-mobile",style:"css"}]]
             },
             include:__dirname
+        },{
+            test: /\.(eot|svg|ttf|woff|woff2)\w*/,
+            loader: 'url?limit=8192'
         }, {
             test: /\.scss$/,
             loader: 'style!css!sass'

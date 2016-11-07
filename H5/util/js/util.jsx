@@ -10,14 +10,14 @@ class Util{
         reqwest({
             url:params.url,
             type:params.type || 'json',
-            method:params.method || 'GET',
-            success: function (data) {
-                callback(data);
-            },
-            error: function (error) {
-                callback(error);
-            }
+            method:params.method || 'GET'
         })
+        .then((resp) => {
+                callback( Object.assign({},resp,{type:'success'}));
+            })
+        .fail((err) =>{
+                callback(Object.assign({},err,{type:'error'}));
+            })
     }
 }
 
