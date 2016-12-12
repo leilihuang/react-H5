@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
-import homeRs from '../component/home/index/reducer';
 
-const reducers = combineReducers({
-    homeRs
-});
+import * as appRs from '../component/reducer.app';
+
+const reducers = combineReducers(appRs);
 
 export default reducers;

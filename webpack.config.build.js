@@ -25,13 +25,13 @@ var config = {
             loader: 'babel',
             exclude:/node_modules/,
             query: {
-                presets: ['react', 'es2015'],
-                plugins: ["transform-class-properties","transform-runtime",["antd",{libraryName:"antd-mobile",style:"css"}]]
+                presets: ['es2015', 'stage-0', 'react'],
+                plugins: ["transform-class-properties","transform-runtime","babel-plugin-transform-decorators-legacy",["antd",{libraryName:"antd-mobile",style:"css"}]]
             },
             include:__dirname
         }, {
-            test: /\.less$/,
-            loader: ExtractTextPlugin.extract('style','css!postcss!less')
+            test: /\.scss/,
+            loader: ExtractTextPlugin.extract('style','css!sass')
         },{
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style','css!postcss')
@@ -59,7 +59,7 @@ var config = {
         new ExtractTextPlugin("[name].css"),
         new webpack.DefinePlugin({
             'process.env':{
-                'NODE_ENV': JSON.stringify(ENV)
+                'NODE_ENV': JSON.stringify("production")
             }
         }),
         new HtmlWebpackPlugin({
