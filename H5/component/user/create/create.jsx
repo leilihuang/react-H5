@@ -1,3 +1,4 @@
+import './create.scss';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {DatePicker, List, InputItem ,Button ,Toast} from 'antd-mobile';
@@ -21,7 +22,17 @@ export default class Create extends Component {
     changeBind(data) {
         console.log(data)
     }
-    subBind(){
+    subBind(e){
+        e.preventDefault();
+        this.props.form.validateFields({
+        }, (error, values) => {
+            if (!error) {
+                console.log('ok', values);
+            } else {
+                console.log('error', error, values);
+            }
+        });
+
         let required = true;
         let formData = this.props.form.getFieldsValue();
         if(formData.endTime){
@@ -40,50 +51,72 @@ export default class Create extends Component {
             return false
         }
         this.props.createTable(formData);
+        this.props.form.resetFields();
         browserHistory.push('/User');
     }
     render() {
-        const {getFieldProps} = this.props.form;
+        const {getFieldProps ,getFieldError} = this.props.form;
+
         return (
             <div className="create-box">
                 <List>
-                    <InputItem
-                        {...getFieldProps('meetingId',{
-                            validateTrigger: 'onBlur',
-                            rules: [{required: true}],
-                        })}
-                        placeholder="请输入会议ID"
-                        labelNumber={6}
-                    >会议ID<span style={{color: 'red'}}>*</span>
-                    </InputItem>
-                    <InputItem
-                        {...getFieldProps('meetingName')}
-                        placeholder="请输入会议名称"
-                        labelNumber={6}
-                        required
-                    >会议名称<span style={{color: 'red'}}>*</span>
-                    </InputItem>
-                    <DatePicker className="forss"
-                                mode="datetime"
-                                onChange={this.changeBind}
-                                {...getFieldProps('startTime')}
-                    >
-                        <List.Item arrow="horizontal">会议开始时间<span style={{color: 'red'}}>*</span></List.Item>
-                    </DatePicker>
-                    <DatePicker className="forss"
-                                mode="datetime"
-                                onChange={(data) =>{
-                                    this.changeBind(data);
-                                }}
-                                format = {(val)=>{
-                                    return val.format('YYYY-MM-DD HH:mm')
-                                }}
-                                {...getFieldProps('endTime')}
-                    >
-                        <List.Item arrow="horizontal">会议结束时间<span style={{color: 'red'}}>*</span></List.Item>
-                    </DatePicker>
-                    <Button className="btn" type="primary" onClick={this.subBind}>创建</Button>
+                    <form onSubmit={this.subBind}>
+                        <InputItem
+                            {...getFieldProps('meetingId',{
+                                rules: [{required: true}]
+                            })}
+                            placeholder="请输入会议ID"
+                            labelNumber={6}
+                        >会议ID<span style={{color: 'red'}}>*</span>
+                        </InputItem>
+                        <div className="error-box">
+                            {(getFieldError('meetingId')) ? "会议ID必填" : null}
+                        </div>
+
+                        <InputItem
+                            {...getFieldProps('meetingName',{
+                                rules: [{required: true}]
+                            })}
+                            placeholder="请输入会议名称"
+                            labelNumber={6}
+                        >会议名称<span style={{color: 'red'}}>*</span>
+                        </InputItem>
+                        <div className="error-box">
+                            {(getFieldError('meetingName')) ? "会议名称必填" : null}
+                        </div>
+
+                        <DatePicker className="forss"
+                                    mode="datetime"
+                                    onChange={this.changeBind}
+                                    {...getFieldProps('startTime',{
+                                        rules: [{required: true}]
+                                    })}
+                        >
+                            <List.Item arrow="horizontal">会议开始时间<span style={{color: 'red'}}>*</span></List.Item>
+                        </DatePicker>
+                        <div className="error-box">
+                            {(getFieldError('startTime')) ? "会议开始时间必填" : null}
+                        </div>
+
+                        <DatePicker className="forss"
+                                    mode="datetime"
+                                    format = {(val)=>{
+                                        return val.format('YYYY-MM-DD HH:mm')
+                                    }}
+                                    {...getFieldProps('endTime',{
+                                        rules: [{required: true}]
+                                    })}
+                        >
+                            <List.Item arrow="horizontal">会议结束时间<span style={{color: 'red'}}>*</span></List.Item>
+                        </DatePicker>
+                        <div className="error-box">
+                            {(getFieldError('endTime')) ? '会议结束时间必填' : null}
+                        </div>
+
+                        <Button className="btn" type="primary" htmlType="submit" >创建</Button>
+                    </form>
                 </List>
+
             </div>
         )
     }

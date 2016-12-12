@@ -6,7 +6,7 @@
   "scripts": {
     "dll": "webpack --config webpack.dll.js",
     "build": "webpack --config webpack.config.build.js --progress --colors",
-    "start": "webpack-dev-server --port 3000 --hot --host 0.0.0.0 --inline --content-base ./dist --history-api-fallback"
+    "start": "webpack-dev-server --port 3000 --hot  --inline --content-base ./dist --open --history-api-fallback"
   },
   "author": "leilihuang",
   "license": "ISC",

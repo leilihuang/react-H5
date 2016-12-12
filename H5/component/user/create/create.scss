@@ -1,18 +1,13 @@
 @import "../../../util/sass/lib/util";
 
 .create-box{
-  .from-box{
-    .lab,.cons{
-      float:left;
-      @include px2px(20);
-      height:px2Rem(50px);
-      line-height:px2Rem(50px);
-    }
-    .lab{
-      width:40%;
-    }
-    .cons{
-      width:60%;
-    }
+  .error-box{
+    @include px2px(24);
+    line-height:2;
+    color:red;
+    padding-left: px2Rem(20px);
+  }
+  .btn{
+    margin-top:px2Rem(40px);
   }
 }
