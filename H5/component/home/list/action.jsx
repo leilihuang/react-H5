@@ -26,7 +26,6 @@ const loading = (isLoading) => ({
 });
 
 export const getList = (Loading)=> (dispatch) =>{
-    //dispatch(loading(Loading));
     dispatch(showLoad());
     return Util.ajax({url:'/list.json'},data => {
         dispatch(hideLoad());

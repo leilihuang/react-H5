@@ -1,10 +1,13 @@
-import { USER_INIT } from './action';
+import {GET_All_TABLE} from './action';
 
-export const userIndex = (state={},action) => {
-  switch(action.type){
-      case USER_INIT:
-          return Object.assign({},state,action.user);
-      default :
-          return state;
-  }
+const initState = {
+    allTable:[]
+};
+export const detailRs  = (state = initState , action) =>{
+    switch (action.type){
+        case GET_All_TABLE:
+            return Object.assign({},state,action);
+        default:
+            return state;
+    }
 };

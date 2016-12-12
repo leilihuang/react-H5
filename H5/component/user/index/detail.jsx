@@ -44,7 +44,7 @@ export default class Detail extends Component {
             <div className="meeting-box">
                 <div className="btn-box">
                     <Button className="btn-c" inline>取消</Button>
-                    <Button inline>创建</Button>
+                    <Link to="/create"><Button inline>创建</Button></Link>
                     <Button inline>更新</Button>
                     <Button  inline>查询</Button>
                 </div>

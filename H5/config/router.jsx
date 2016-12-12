@@ -6,9 +6,10 @@ import App from '../component/app';
 
 export default (
     <div>
-        <Route path='/' component={App}>
-            {homeRoute}
-            {userRoute}
-        </Route>
+        {/*<Route path='/' component={App}>*/}
+            {/*{homeRoute}*/}
+            {/*{userRoute}*/}
+        {/*</Route>*/}
+        {userRoute}
     </div>
 );

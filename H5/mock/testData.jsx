@@ -9,3 +9,13 @@ Mock.mock(/\/home\/index\/getList/g,{
     }]
 });
 
+Mock.mock(/\/getAllTable\.json/g,{
+    "data|5":[{
+        'meetingId|+1':2223,
+        "meetingName":"@name",
+        "startTime":'@datetime',
+        "endTime":'@datetime',
+        "key|+1":0
+    }]
+});
+

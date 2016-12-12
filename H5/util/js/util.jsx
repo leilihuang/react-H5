@@ -7,17 +7,23 @@ class Util{
          * @type  json数据类型
          * @method  请求类型
          * @callback（必填）  回调函数*/
-        reqwest({
+        return reqwest({
             url:params.url,
             type:params.type || 'json',
             method:params.method || 'GET'
-        })
-        .then((resp) => {
-                callback( Object.assign({},resp,{type:'success'}));
-            })
-        .fail((err) =>{
-                callback(Object.assign({},err,{type:'error'}));
-            })
+        });
+
+        // reqwest({
+        //     url:params.url,
+        //     type:params.type || 'json',
+        //     method:params.method || 'GET'
+        // })
+        // .then((resp) => {
+        //         callback( Object.assign({},resp,{type:'success'}));
+        //     })
+        // .fail((err) =>{
+        //         callback(Object.assign({},err,{type:'error'}));
+        //     })
     }
 }
 
