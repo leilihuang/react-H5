@@ -1,6 +1,12 @@
 import util from '../../ajax';
 
 export const GET_All_TABLE = 'GET_ALL_TABLE';
+export const CREATE_TABLE = 'CREATE_TABLE';
+
+export const addTable = (addTable) =>({
+   type:CREATE_TABLE,
+    addTable
+});
 
 const getAllTable = (allTable) =>({
     type:GET_All_TABLE,

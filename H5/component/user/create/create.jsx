@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {DatePicker, List, InputItem ,Button ,Toast} from 'antd-mobile';
 import {createForm} from 'rc-form';
+import {browserHistory} from 'react-router';
+import {addTable} from '../index/action';
 
 @connect(state => {
     return {
         tables:state.detailRs.allTable
     }
 }, dispatch => ({
-
+    createTable:(table) => dispatch(addTable(table))
 }))
 export default class Create extends Component {
     constructor(props) {
@@ -37,8 +39,8 @@ export default class Create extends Component {
             Toast.fail('必填项未填，请填写完整信息!!!', 1);
             return false
         }
-        console.log(formData);
-
+        this.props.createTable(formData);
+        browserHistory.push('/User');
     }
     render() {
         const {getFieldProps} = this.props.form;
