@@ -1,11 +1,25 @@
 import util from '../../ajax';
+import {Toast} from 'antd-mobile';
 
 export const GET_All_TABLE = 'GET_ALL_TABLE';
-export const CREATE_TABLE = 'CREATE_TABLE';
+export const UPLOAD_TABLE = 'UPLOAD_TABLE';
 
-export const addTable = (addTable) =>({
-   type:CREATE_TABLE,
-    addTable
+export const cancelTable = (idArray) => (dispatch) =>{
+  util.ajax({
+      url:"/cancelTable"
+  },dispatch).then(function (data) {
+      if(data.success && data.info){
+          Toast.success("成功取消会议！！！");
+          dispatch(getAllTableApi())
+      }else{
+          Toast.fail(data.errorMsg, 1);
+      }
+  })
+};
+
+export const uploadTable = (uploadTables) =>({
+   type:UPLOAD_TABLE,
+    uploadTables
 });
 
 const getAllTable = (allTable) =>({
@@ -14,10 +28,13 @@ const getAllTable = (allTable) =>({
 });
 export const getAllTableApi = (id) => (dispatch) =>{
     util.ajax({
-        url:'/getAllTable.json'
+        url:'/getAllTable.json',
+        data:id || {}
     },dispatch).then(function (data) {
-        dispatch(getAllTable(data.data));
-    },function(error){
-        console.log(error)
+        if(data.success){
+            dispatch(getAllTable(data.info));
+        }else{
+            Toast.fail(data.errorMsg, 1);
+        }
     })
 };

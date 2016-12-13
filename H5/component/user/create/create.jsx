@@ -3,56 +3,57 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {DatePicker, List, InputItem ,Button ,Toast} from 'antd-mobile';
 import {createForm} from 'rc-form';
-import {browserHistory} from 'react-router';
-import {addTable} from '../index/action';
+import {createTable} from './action';
 
 @connect(state => {
     return {
-        tables:state.detailRs.allTable
+        tables:state.userIndexRs.allTable
     }
 }, dispatch => ({
-    createTable:(table) => dispatch(addTable(table))
+    createTable:(table) => dispatch(createTable(table))
 }))
-export default class Create extends Component {
+export default class CreateTable extends Component {
     constructor(props) {
         super(props);
         this.subBind = this.subBind.bind(this);
         this.changeBind = this.changeBind.bind(this);
+    }
+    componentWillMount(){
+        if(this.props.uploadData){
+            console.log('upload',this.props.uploadData)
+            this.props.form.setFieldsValue(this.props.uploadData);
+        }
     }
     changeBind(data) {
         console.log(data)
     }
     subBind(e){
         e.preventDefault();
+        let required = true;
+        let formData = this.props.form.getFieldsValue();
+
         this.props.form.validateFields({
         }, (error, values) => {
             if (!error) {
                 console.log('ok', values);
             } else {
+                required = false;
                 console.log('error', error, values);
             }
         });
 
-        let required = true;
-        let formData = this.props.form.getFieldsValue();
         if(formData.endTime){
             formData.endTime = formData.endTime.format('YYYY-MM-DD HH:mm');
         }
         if(formData.startTime){
             formData.startTime = formData.startTime.format('YYYY-MM-DD HH:mm');
         }
-        for(let keys in formData){
-            if(!formData[keys]){
-                required = false;
-            }
-        }
+
         if(!required){
-            Toast.fail('必填项未填，请填写完整信息!!!', 1);
             return false
         }
         this.props.createTable(formData);
-        this.props.form.resetFields();
-        browserHistory.push('/User');
+        // this.props.form.resetFields();
     }
     render() {
         const {getFieldProps ,getFieldError} = this.props.form;
@@ -62,7 +63,7 @@ export default class Create extends Component {
                 <List>
                     <form onSubmit={this.subBind}>
                         <InputItem
-                            {...getFieldProps('meetingId',{
+                            {...getFieldProps('conferenceId',{
                                 rules: [{required: true}]
                             })}
                             placeholder="请输入会议ID"
@@ -70,11 +71,11 @@ export default class Create extends Component {
                         >会议ID<span style={{color: 'red'}}>*</span>
                         </InputItem>
                         <div className="error-box">
-                            {(getFieldError('meetingId')) ? "会议ID必填" : null}
+                            {(getFieldError('conferenceId')) ? "会议ID必填" : null}
                         </div>
 
                         <InputItem
-                            {...getFieldProps('meetingName',{
+                            {...getFieldProps('subject',{
                                 rules: [{required: true}]
                             })}
                             placeholder="请输入会议名称"
@@ -82,12 +83,11 @@ export default class Create extends Component {
                         >会议名称<span style={{color: 'red'}}>*</span>
                         </InputItem>
                         <div className="error-box">
-                            {(getFieldError('meetingName')) ? "会议名称必填" : null}
+                            {(getFieldError('subject')) ? "会议名称必填" : null}
                         </div>
 
                         <DatePicker className="forss"
                                     mode="datetime"
-                                    onChange={this.changeBind}
                                     {...getFieldProps('startTime',{
                                         rules: [{required: true}]
                                     })}
@@ -100,9 +100,6 @@ export default class Create extends Component {
 
                         <DatePicker className="forss"
                                     mode="datetime"
-                                    format = {(val)=>{
-                                        return val.format('YYYY-MM-DD HH:mm')
-                                    }}
                                     {...getFieldProps('endTime',{
                                         rules: [{required: true}]
                                     })}
@@ -121,5 +118,5 @@ export default class Create extends Component {
         )
     }
 }
-Create = createForm()(Create);
+CreateTable = createForm()(CreateTable);
 

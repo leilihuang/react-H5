@@ -1,5 +1,6 @@
 import reqwest from 'reqwest';
 import {showLoad , hideLoad} from './common/loading/action';
+import {Toast} from 'antd-mobile';
 
 class Util{
     ajax(params,dispatch){
@@ -11,7 +12,10 @@ class Util{
         return reqwest({
             url:params.url,
             type:params.type || 'json',
-            method:params.method || 'GET'
+            method:params.method || 'GET',
+            data:params.data
+        }).fail(function (error) {
+            Toast.fail("系统繁忙，请稍后重试！", 1);
         }).always(function(){
             dispatch(hideLoad());
         })

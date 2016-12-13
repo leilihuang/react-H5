@@ -7,7 +7,7 @@ const vendors = [
     'react-router',
     'react-redux',
     'redux',
-    'babel-polyfill'
+    'rc-form'
 ];
 
 module.exports = {

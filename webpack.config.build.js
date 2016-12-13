@@ -14,7 +14,8 @@ var config = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        filename: '[name].js',
+        chunkFilename: "[name].min.js"
     },
     resolve:{
         extensions:['','.web.js','.js','.json','.jsx']
@@ -42,12 +43,15 @@ var config = {
     },
     postcss: function () {
         return [pxtorem({
-            rootValue: 100,
+            rootValue: 75,
             propWhiteList: []
         })]
     },
     plugins:[
         new webpack.optimize.UglifyJsPlugin({
+            mangle: {
+                keep_fnames: false
+            },
             compress:{
                 warnings : false
             }
