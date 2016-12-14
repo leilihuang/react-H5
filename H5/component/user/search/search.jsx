@@ -44,12 +44,6 @@ export default class SearchTable extends Component{
                         >
                             <List.Item arrow="horizontal">会议开始时间</List.Item>
                         </DatePicker>
-                        <DatePicker className="forss"
-                                    mode="datetime"
-                                    {...getFieldProps('endTime')}
-                        >
-                            <List.Item arrow="horizontal">会议结束时间</List.Item>
-                        </DatePicker>
                         <Button className="btn" type="primary" htmlType="submit" >查询</Button>
                     </form>
                 </List>

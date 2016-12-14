@@ -7,6 +7,22 @@
     color:red;
     padding-left: px2Rem(20px);
   }
+  .tags-box{
+    .tags{
+      padding: px2Rem(10px) px2Rem(20px);
+      margin:px2Rem(20px);
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius:px2Rem(5px);
+      position: relative;
+      .anticon-cross-circle{
+        position:absolute;
+        display: inline-block;
+        top:px2Rem(-15px);
+        left:px2Rem(-15px);
+      }
+    }
+  }
   .btn{
     margin-top:px2Rem(40px);
   }

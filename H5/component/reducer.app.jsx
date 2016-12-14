@@ -3,6 +3,7 @@
 // export  { homeList } from './home/list/reducer';
 
 export  { userIndexRs } from './user/index/reducer';
+export  { createTabRs } from './user/create/reducer';
 
 export  { commonLoad } from './common/loading/reducers';
 

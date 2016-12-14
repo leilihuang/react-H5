@@ -19,6 +19,7 @@ Mock.mock(/\/getAllTable\.json/g,{
         "startTime":'@datetime',
         "endTime":'@datetime',
         "duration":"会议持续时间",
+        "status|1":[0,1,2],
         "key|+1":0
     }]
 });
@@ -35,4 +36,14 @@ Mock.mock(/\/cancelTable/g,{
     "success":true,
     "errorMsg":"@csentence(5)",
     "info":true
+});
+
+//获取参与会议的人员名单
+Mock.mock(/\/getMeetUser/g,{
+    "success":true,
+    "errorMsg":"@error",
+    "info|10":[{
+        "id|+1":1,
+        "name":"@name"
+    }]
 });

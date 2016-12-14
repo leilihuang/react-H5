@@ -1,8 +1,23 @@
 @import "../../../util/sass/lib/util";
 
 .meeting-box{
+  background: #FFFFFF;
   .check-box{
     width:px2Rem(30px);
     height:px2Rem(30px);
+  }
+  .state-box0{
+    color:#ccc;
+  }
+  .state-box1{
+    color:#5cb85c;
+  }
+  .state-box2{
+    color:#d9534f;
+  }
+  .btn-box{
+    button{
+      margin:px2Rem(20px) px2Rem(20px) px2Rem(20px) 0;
+    }
   }
 }
