@@ -4,9 +4,9 @@
   "description": "",
   "main": "",
   "scripts": {
-    "dll": "webpack --config webpack.dll.js -p",
-    "build": "webpack --config webpack.config.build.js --progress --colors -p",
-    "start": "webpack-dev-server --port 3000 --hot  --inline --content-base ./dist --open --history-api-fallback"
+    "dll":"webpack --config webpack.dll.js -p",
+    "build": "webpack --config webpack.dll.js -p  && webpack --config webpack.config.build.js --progress --colors -p ",
+    "start": "webpack --config webpack.dll.js -p && webpack-dev-server --port 3000 --hot  --inline --content-base ./dist --open --history-api-fallback"
   },
   "author": "leilihuang",
   "license": "ISC",

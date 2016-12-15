@@ -8,7 +8,7 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 var config = {
     cache:true,
-    devtool: 'source-map', //source-map
+    devtool: 'eval', //source-map
     entry: {
         index:path.resolve(__dirname, 'H5/main')
     },
@@ -18,9 +18,15 @@ var config = {
         chunkFilename: "[name].min.js"
     },
     resolve:{
-        extensions:['','.web.js','.js','.json','.jsx']
+        extensions:['','.web.js','.js','.json','.jsx'],
+        alias:{
+            "moment": "moment/min/moment.min.js",
+            "babel-polyfill":"babel-polyfill/dist/polyfill.min.js",
+            "redux":"redux/dist/redux.min.js"
+        }
     },
     module: {
+        noParse:[/moment/],
         loaders: [{
             test: /\.jsx?$/,
             loader: 'babel',
@@ -49,11 +55,14 @@ var config = {
     },
     plugins:[
         new webpack.optimize.UglifyJsPlugin({
+            // 清除备注
+            comments: true,
             mangle: {
                 keep_fnames: false
             },
             compress:{
-                warnings : false
+                warnings : false,
+                drop_console: true
             }
         }),
         new webpack.DllReferencePlugin({

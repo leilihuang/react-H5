@@ -1,7 +1,6 @@
 import './util/sass/main.scss';
 import  './util/js/rem.js';/*自动计算手机dpr屏，不同手机展示不同的适配样式*/
 
-import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -9,6 +8,9 @@ import { Router  , browserHistory } from 'react-router';
 
 import routers from './config/router';
 import configureStore from './config/store';
+require('babel-polyfill'); //为es6的新语法添加垫片
+
+// const { render } = require('react-dom');
 
 
 //import DevTools from './component/DevTools';  默认关闭调试工具

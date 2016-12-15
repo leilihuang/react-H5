@@ -7,18 +7,23 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'development';
 
 const config = {
     cache:true,
-    devtool: 'eval',
+    devtool: 'cheap-source-map',
     entry: {
         index:['webpack/hot/dev-server', path.resolve(__dirname, 'H5/main')]
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        filename: '[name].js',
+        libraryTarget: 'umd'
     },
     resolve:{
-        extensions:['','.web.js','.js','.json','.jsx']
+        extensions:['','.web.js','.js','.json','.jsx'],
+        alias:{
+            moment: "moment/min/moment.min.js"
+        }
     },
     module: {
+        noParse:[/moment/],
         loaders: [{
             test: /\.jsx?$/,
             loader: 'babel',
