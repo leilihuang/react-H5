@@ -12,7 +12,7 @@ import {createTable, getMeetUserApi} from './action';
     }
 }, dispatch => ({
     createTable: (table) => dispatch(createTable(table)),
-    getUserApi: () => dispatch(getMeetUserApi())
+    getUserApi: (obj) => dispatch(getMeetUserApi(obj))
 }))
 export default class CreateTable extends Component {
     constructor(props) {
@@ -28,7 +28,6 @@ export default class CreateTable extends Component {
     }
 
     componentWillMount() {
-        this.props.getUserApi();
         if (this.props.uploadData) {
             this.props.form.setFieldsValue(this.props.uploadData);
         }
@@ -60,7 +59,12 @@ export default class CreateTable extends Component {
         if (!required) {
             return false
         }
-        this.props.createTable(Object.assign({},formData,{attendeeName:this.state.tagBox}));
+
+        if(this.props.uploadData){
+            this.props.getUserApi(formData)
+        }else{
+            this.props.createTable(Object.assign({},formData,{attendeeName:this.state.tagBox}));
+        }
     }
     addTags(e) {
         this.setState({
@@ -98,7 +102,6 @@ export default class CreateTable extends Component {
             })
         }
     }
-
     render() {
         const {getFieldProps, getFieldError} = this.props.form;
 
@@ -185,7 +188,7 @@ export default class CreateTable extends Component {
                                 </div> : ''
                         }
 
-                        <Button className="btn" type="primary" htmlType="submit">创建</Button>
+                        <Button className="btn" type="primary" htmlType="submit">{!this.props.uploadData ? '创建' : '更新'}</Button>
                     </form>
                 </List>
 

@@ -1,13 +1,14 @@
 import React , {Component} from 'react';
 import {connect} from 'react-redux';
 import {createForm} from 'rc-form';
+import {browserHistory} from 'react-router';
 import {DatePicker, List, InputItem ,Button ,Toast} from 'antd-mobile';
-import {getAllTableApi} from '../index/action';
+import {searchObj} from '../index/action';
 
 @connect(state =>({
 
 }),dispatch=>({
-    searchApi:(data) => dispatch(getAllTableApi(data))
+    searchApi:(data) => dispatch(searchObj(data))
 }))
 export default class SearchTable extends Component{
     constructor(props){
@@ -17,8 +18,9 @@ export default class SearchTable extends Component{
     subBind(e){
        e.preventDefault();
        let data = this.props.form.getFieldsValue();
-        console.log(data);
+       console.log(data)
         this.props.searchApi(data);
+        browserHistory.push('/Index');
     }
     render(){
         let {getFieldProps} = this.props.form;

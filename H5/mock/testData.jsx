@@ -10,7 +10,7 @@ Mock.mock(/\/home\/index\/getList/g,{
 });
 
 //获取所有会议数据
-Mock.mock(/\/getAllTable\.json/g,{
+Mock.mock(/\/conference\/getconferences/g,{
     "success":true,
     "errorMsg":"@csentence(5)",
     "info|5":[{
@@ -25,14 +25,22 @@ Mock.mock(/\/getAllTable\.json/g,{
 });
 
 //创建会议
-Mock.mock(/\/createTable/g,{
+Mock.mock(/\/conference\/createconferences/g,{
     "success":true,
     "errorMsg":"@csentence(5)",
     "info":true
 });
 
+///conference/modifyconferences  更新会议
+Mock.mock(/\/conference\/modifyconferences/g,{
+    "success":true,
+    "errorMsg":"@csentence(5)",
+    "info":true
+});
+
+
 //取消会议
-Mock.mock(/\/cancelTable/g,{
+Mock.mock(/\/conference\/cancelconferences/g,{
     "success":true,
     "errorMsg":"@csentence(5)",
     "info":true

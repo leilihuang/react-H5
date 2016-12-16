@@ -11,18 +11,21 @@ const getMeetUser = (allUser) =>({
     allUser
 });
 
-export const getMeetUserApi = () => (dispatch) =>{
-    util.ajax({url:'/getMeetUser'},dispatch).then(function (data) {
+//更新会议
+export const getMeetUserApi = (obj) => (dispatch) =>{
+    util.ajax({url:'/conference/modifyconferences',data:obj},dispatch).then(function (data) {
         if(data.success){
-            dispatch(getMeetUser(data.info));
+            browserHistory.push('/Index');
+            // dispatch(getMeetUser(data.info));
         }else{
             Toast.fail(data.errorMsg, 1);
         }
     })
 };
 
+//创建会议
 export const createTable = (obj) => (dispatch) =>{
-    util.ajax({url:'/createTable'},dispatch).then(function (data) {
+    util.ajax({url:'/conference/createconferences',data:obj},dispatch).then(function (data) {
         if(data.success && data.info){
             browserHistory.push('/Index');
         }else{

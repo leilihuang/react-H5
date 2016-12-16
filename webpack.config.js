@@ -7,7 +7,7 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'development';
 
 const config = {
     cache:true,
-    devtool: 'cheap-source-map',
+    devtool: 'source-map',
     entry: {
         index:['webpack/hot/dev-server', path.resolve(__dirname, 'H5/main')]
     },
